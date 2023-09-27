@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<!--
+
+  	Browser interface login skeleton
+
+  	@package	sync*gw
+ 	@subpackage	GUI
+ 	@copyright	(c) 2008 - 2023 Florian Daeumling, Germany. All right reserved
+  	@license 	LGPL-3.0-or-later
+  
+-->
+<html>
+<meta http-equiv="content-type" content="text/html; charset=utf-8"></meta>
+<meta name="robots" content="noindex">
+<head><title>sync&bull;gw</title></head>
+<link rel="shortcut icon" href="{HTML}gui-bundle/assets/favicon.ico" type="image/x-icon" />
+<link rel="icon" href="{HTML}gui-bundle/assets/favicon.ico" type="image/x-icon" />
+<link rel="stylesheet" type="text/css" href="{HTML}gui-bundle/assets/style-min.css">
+<script type="text/javascript" src="{HTML}gui-bundle/assets/ajax-min.js"></script>
+<script type="text/javascript" src="{HTML}gui-bundle/assets/win-min.js"></script>
+<body>
+<form name="syncgw" action="{ScriptURL}" method="post" enctype="multipart/form-data" accept-charset="utf-8">
+ <div class="sgwDiv" style="border:1px solid; background-color:#F2F2F2; color:black; overflow:auto; padding:50px; 
+ 			 margin-top: 150px; margin-left: 200px; width: 360px;">{Hidden}
+  <img src="{HTML}gui-bundle/asset/syncgw.png"><br>
+  Copyright (&copy;) 2008 - 2023 <a href="https://github.com/toteph42" target="_blank">Florian Daeumling</a><br><br>
+  <div style="width:170px;float:left;">{PasswordText}</div>
+   <input type="password" name="UserPW" id="UserPW" maxlength="128" size="22" value="{UserPW}" /><br>
+  <input type="hidden" name="AdminFlag" id="AdminFlag" value="1" />
+  <div style="width:127px;float:left;margin-top:2px;text-align:right;">{LoginButton}</div>
+  <div style="width:127px;float:left;margin-top:2px;text-align:right;">{ExtButton}</div><br>
+  <div style="color:red;font-weight:bold;margin-top:5px;">{LoginMsg}</div>
+  <input type="hidden" name="Action" id="Action" value="" /><noscript><br><span style="font-size:150%;font-weight:bold;color:#DF0101;float:none;">{NoJavaScript}</span></noscript>
+ </div>
+</form>
+</body>
+</html>

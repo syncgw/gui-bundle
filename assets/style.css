@@ -1,0 +1,21 @@
+/*
+ *  Standard sheet definitions
+ *
+ *	@package	sync*gw
+ *	@subpackage	GUI
+ *	@copyright	(c) 2008 - 2023 Florian Daeumling, Germany. All right reserved
+ * 	@license 	LGPL-3.0-or-later
+ */
+
+h1.sgwH1			{ font-family:Arial,sans-serif;font-size:16px; }
+div.sgwDiv			{ font-family:Arial,sans-serif;font-size:13px; }
+div.sgwLink			{ text-decoration:underline; }
+input.sgwBut		{ width:70px;font-size:80%; }
+table.sgwTab 		{ padding:0px;border-spacing:0px; }
+table.sgwRec 		{ padding:0px;border-spacing:0px;font-family:monospace; }
+a.sgwA				{ font-family:Arial,sans-serif;font-size:13px; }
+a:visited.sgwA		{ border:1px solid white;text-decoration:none;font-weight:600;color:#4D4DB0; }
+a:active.sgwA		{ border:1px solid white;text-decoration:none;font-weight:600;color:#4D4DB0; }
+a:link.sgwA			{ border:1px solid white;text-decoration:none;font-weight:600;color:#4D4DB0; }
+a:hover.sgwA		{ border:1px solid #AAAAAA;color:#E24D4D; }
+.sgwF				{ font-family:monospace; }
