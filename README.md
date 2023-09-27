@@ -1,8 +1,8 @@
 # ![picture logo](assets/syncgw.png "sync•gw") #
  
-![](https://img.shields.io/packagist/v/syncgw/core-bundle.svg)
-![](https://img.shields.io/packagist/l/syncgw/core-bundle.svg)
-![](https://img.shields.io/packagist/dt/syncgw/core-bundle.svg)
+![](https://img.shields.io/packagist/v/syncgw/gui-bundle.svg)
+![](https://img.shields.io/packagist/l/syncgw/gui-bundle.svg)
+![](https://img.shields.io/packagist/dt/syncgw/gui-bundle.svg)
  
 **sync•gw** is the one and only fully portable server software available providing synchronization service between nearly any mobile device and your web server.
 

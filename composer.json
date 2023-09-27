@@ -1,6 +1,6 @@
 {
 	"name" : "syncgw/gui-bundle",
-	"license": "LGPL-3.0-or-later",
+	"license" : "LGPL-3.0-or-later",
 	"homepage" : "https://github.com/syncgw/file-bundle",
 	"authors" : [{
 			"name" : "Florian Daeumling",
@@ -22,8 +22,8 @@
 		}
 	},
 	"support" : {
-		"issues" : "https://github.com/syncgw/syncgw/issues",
+		"issues" : "https://github.com/syncgw/core-bundle/issues",
 		"source" : "https://github.com/syncgw/gui-bundle",
-		"docs" : "https://github.com/syncgw/gui-bundle"
+		"docs" : "https://github.com/syncgw/doc-bundle"
 	}
 }
