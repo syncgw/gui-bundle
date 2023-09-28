@@ -15,7 +15,8 @@
 	],
 	"require" : {
 		"php" : ">=8.1",
-		"syncgw/sabre" : "*"
+		"syncgw/sabre" : ">=9.19.78",
+		"syncgw/core-bundle" : ">=9.19.78",
 	},
 	"autoload" : {
 		"psr-4" : {
