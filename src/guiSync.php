@@ -14,7 +14,6 @@ namespace syncgw\gui;
 
 use syncgw\lib\DataStore;
 use syncgw\lib\Util;
-use syncgw\lib\XML;
 use syncgw\lib\Config;
 
 class guiSync {
@@ -38,18 +37,7 @@ class guiSync {
 		return self::$_obj;
 	}
 
-    /**
-	 * 	Collect information about class
-	 *
-	 * 	@param 	- Object to store information
-     *	@param 	- true = Provide status information only (if available)
-	 */
-	public function getInfo(XML &$xml, bool $status): void {
-
-		$xml->addVar('Opt', 'Synchronize external data store plugin');
-	}
-
-	/**
+ 	/**
 	 * 	Perform action
 	 *
 	 * 	@param	- Action to perform

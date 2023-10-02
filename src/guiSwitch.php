@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace syncgw\gui;
 
 use syncgw\lib\Config;
-use syncgw\lib\XML;
 
 class guiSwitch {
 
@@ -36,18 +35,7 @@ class guiSwitch {
 		return self::$_obj;
 	}
 
-    /**
-	 * 	Collect information about class
-	 *
-	 * 	@param 	- Object to store information
-     *	@param 	- true = Provide status information only (if available)
-	 */
-	public function getInfo(XML &$xml, bool $status): void {
-
-		$xml->addVar('Opt', 'Switch data base plugin');
-	}
-
-	/**
+ 	/**
 	 * 	Perform action
 	 *
 	 * 	@param	- Action to perform

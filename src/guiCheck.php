@@ -15,7 +15,6 @@ namespace syncgw\gui;
 use syncgw\lib\Config;
 use syncgw\lib\Server;
 use syncgw\lib\Util;
-use syncgw\lib\XML;
 
 class guiCheck {
 
@@ -36,17 +35,6 @@ class guiCheck {
             self::$_obj = new self();
 
 		return self::$_obj;
-	}
-
-    /**
-	 * 	Collect information about class
-	 *
-	 * 	@param 	- Object to store information
-     *	@param 	- true = Provide status information only (if available)
-	 */
-	public function getInfo(XML &$xml, bool $status): void {
-
-		$xml->addVar('Opt', 'Environment and server check plugin');
 	}
 
 	/**
@@ -71,7 +59,7 @@ class guiCheck {
 
 			// perform basic checks
 			$err = 0;
-			$ok = 'Implemented';
+			$ok = 'Available';
 			$gui->tabMsg('Checking PHP version ...', '', phpversion());
 
 		    $s  = array( 'B', 'KB', 'MB', 'GB', 'TB' );
@@ -114,9 +102,11 @@ class guiCheck {
 
 			$m = 'Checking \'ZIP\' PHP extension ...';
 			if (!class_exists('ZipArchive'))
-				$gui->tabMsg($m, '', 'You need to enable this PHP extension in if you want to download or upload data in administrator panel '.
+				$gui->tabMsg($m, '', 'You need to enable this PHP extension in if you want to download '.
+							 'or upload data in administrator panel '.
 							 '(<a class="sgwA" '.
-							 'href="http://www.php.net/manual/en/zip.setup.php" target="_blank">more information</a>)', Config::CSS_WARN);
+							 'href="http://www.php.net/manual/en/zip.setup.php" target="_blank">more information</a>)',
+							 Config::CSS_WARN);
 			else
 				$gui->tabMsg($m, '', $ok);
 
@@ -132,14 +122,6 @@ class guiCheck {
 				} else
 					$gui->tabMsg($m, '', $ok);
 			}
-
-			$m = 'Checking \'Gettext\' PHP extension ...';
-			if (!function_exists('gettext'))
-				$gui->tabMsg($m, '', 'You need to enable this PHP extension in PHP.INI if you want to use native language support '.
-							 '(<a class="sgwA" href="http://www.php.net/manual/en/book.gettext.php" '.
-							 'target="_blank">more information</a>)', Config::CSS_WARN);
-			else
-				$gui->tabMsg($m, '', $ok);
 
 			$m = 'Checking \'Multibyte string\' PHP extension ...';
 			if (!function_exists('mb_convert_encoding'))
@@ -198,23 +180,15 @@ class guiCheck {
 
 			// get server information
 			$srv = Server::getInstance();
-			$xml = $srv->getInfo(true);
+			$xml = $srv->getInfo();
+			$gui->putMsg('');
 
-			$tag = '';
 			$xml->getChild('syncgw');
 			while (($v = $xml->getItem()) !== null) {
 				switch ($xml->getName()) {
 				case 'Name':
+					$gui->tabMsg($v, Config::CSS_TITLE, '', '');
 					$m = $v;
-					break;
-
-				case 'Ver':
-					if ($tag == 'Name') {
-
-						$gui->putMsg('');
-						$gui->tabMsg($m, Config::CSS_TITLE, 'v'.Server::MVER.sprintf('%03d', $v), Config::CSS_TITLE);
-					} else
-						$gui->tabMsg($m, '', 'v'.Server::MVER.sprintf('%03d', $v), '');
 					break;
 
 				case 'Opt':
@@ -234,7 +208,6 @@ class guiCheck {
 				default:
 					break;
 				}
-				$tag = $xml->getName();
 			}
 			$gui->putMsg('');
 			$gui->tabMsg('Overall status', Config::CSS_TITLE, $tit, $col);

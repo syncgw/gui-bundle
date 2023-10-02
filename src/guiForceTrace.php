@@ -12,7 +12,6 @@ declare(strict_types=1);
 
 namespace syncgw\gui;
 
-use syncgw\lib\XML;
 use syncgw\lib\DataStore;
 
 class guiForceTrace {
@@ -36,18 +35,7 @@ class guiForceTrace {
 		return self::$_obj;
 	}
 
-    /**
-	 * 	Collect information about class
-	 *
-	 * 	@param 	- Object to store information
-     *	@param 	- true = Provide status information only (if available)
-	 */
-	public function getInfo(XML &$xml, bool $status): void {
-
-		$xml->addVar('Opt', 'Enable forced trace plugin');
-	}
-
-	/**
+  	/**
 	 * 	Perform action
 	 *
 	 * 	@param	- Action to perform

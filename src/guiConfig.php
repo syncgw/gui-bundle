@@ -18,7 +18,6 @@ use syncgw\lib\DataStore;
 use syncgw\lib\Log;
 use syncgw\lib\User;
 use syncgw\lib\Util;
-use syncgw\lib\XML;
 
 class guiConfig {
 
@@ -41,18 +40,7 @@ class guiConfig {
 		return self::$_obj;
 	}
 
-    /**
-	 * 	Collect information about class
-	 *
-	 * 	@param 	- Object to store information
-     *	@param 	- true = Provide status information only (if available)
-	 */
-	public function getInfo(XML &$xml, bool $status): void {
-
-		$xml->addVar('Opt', 'Configure <strong>sync&bull;gw</strong> server plugin');
-	}
-
-	/**
+ 	/**
 	 * 	Perform action
 	 *
 	 * 	@param	- Action to perform
@@ -163,20 +151,11 @@ class guiConfig {
 
 			// load list of available data base interface handler
 			$hd = [];
-			foreach ([ 'file-bundle', 'mysql-bundle', 'roundcube-bundle', 'mail-bundle', 'myapp-bundle '] as $dir) {
+			foreach ([ 'file', 'mysql', 'roundcube', 'mail', 'myapp'] as $dir) {
 
-				if (!($d = opendir($dir = $cnf->getVar(Config::ROOT).$dir))) {
+				if (file_exists($cnf->getVar(Config::ROOT).$dir.'-bundle'))
+					$hd[$dir] = true;
 
-					$gui->putMsg(sprintf('Can\'t open [%s]'), $dir, Config::CSS_ERR);
-					return false;
-				}
-				while (($file = readdir($d)) !== false) {
-
-					if ($file == '.' || $file == '..' || !is_dir($dir.'/'.$file))
-						continue;
-					$hd[$file] = true;
-				}
-				closedir($d);
 			}
 
 			// remove sustainable handler
@@ -450,39 +429,28 @@ class guiConfig {
 		$cnf = Config::getInstance();
 		$rc = true;
 
-		if(($c = $gui->getVar('ConfLogFile')) === null)
-			$c = $cnf->getVar(Config::LOG_DEST);
+		if(($val = $gui->getVar('ConfLogFile')) === null)
+			$val = $cnf->getVar(Config::LOG_DEST);
 
-		if ($action == 'ConfSave') {
+		if ($action == 'ConfSave' && $val) {
 
-			if ($c) {
+			// be sure to convert path seperators
+			$val = str_replace('\\', '/', $val);
 
-				$c = str_replace('\\', '/', $c);
-				if (!@is_dir(dirname($c))) {
+			if (strtolower($val) != 'syslog' && strtolower($val) != 'off') {
 
-					$gui->putMsg(sprintf('Error accessing log file directory [%s]', dirname($c)), Config::CSS_ERR);
+				if (!@is_dir(dirname($val))) {
+
+					$gui->putMsg(sprintf('Error accessing log file directory [%s]', dirname($val)), Config::CSS_ERR);
 					$rc = false;
-				} else {
-
-					if (stripos($c, 'syslog') === false && strtolower($c) != 'off') {
-
-						if (@file_exists($c))
-							$x = file_get_contents($c);
-						else
-							$x = "\n";
-						if ($x === false || @file_put_contents($c.'.'.date('Ymd'), $x) === false) {
-
-							$gui->putMsg(sprintf('Error accessing log file directory [%s] for log file', $c), Config::CSS_ERR);
-							$rc = false;
-						} else
-							$cnf->updVar(Config::LOG_DEST, $c);
-					}
 				}
 			}
+			if ($rc)
+				$cnf->updVar(Config::LOG_DEST, $val);
 		}
 
-		$gui->putQBox('Log file name',
-					  '<input name="ConfLogFile" type="text" size="47" maxlength="250" value="'.$c.'" />',
+		$gui->putQBox('Logging destination',
+					  '<input name="ConfLogFile" type="text" size="47" maxlength="250" value="'.$val.'" />',
 					  'Specify where to store error, warning and informational messages.<br/><br/>'.
 						'<strong>Off</strong><br/>Turn off any logging.<br/><br/>'.
 						'<strong>SysLog</strong><br/>Msg messages to system log file.<br/><br/>'.

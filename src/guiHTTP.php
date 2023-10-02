@@ -13,7 +13,6 @@ declare(strict_types=1);
 namespace syncgw\gui;
 
 use syncgw\lib\Config;
-use syncgw\lib\XML;
 use syncgw\lib\HTTP;
 
 class guiHTTP extends HTTP {
@@ -38,17 +37,6 @@ class guiHTTP extends HTTP {
 		}
 
 		return self::$_obj;
-	}
-
-    /**
-	 * 	Collect information about class
-	 *
-	 * 	@param 	- Object to store information
-     *	@param 	- true = Provide status information only (if available)
-	 */
-	public function getInfo(XML &$xml, bool $status): void {
-
-		$xml->addVar('Opt', 'User interface HTTP handler');
 	}
 
 	/**
