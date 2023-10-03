@@ -356,7 +356,7 @@ class guiHandler extends XML {
 	public function isConfigured(): bool {
 
 		$cnf = Config::getInstance();
-		if (!file_exists($cnf->getVar(Config::ROOT).'core-bundle/assets/'.Config::CONFIG))
+		if (!file_exists($cnf->Path))
 			return false;
 
 		// is syncgw initalized?
