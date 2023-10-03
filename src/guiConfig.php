@@ -100,7 +100,7 @@ class guiConfig {
 					$cnf->saveINI();
 										// be sure to disable tracing
 				    $cnf->updVar(Config::TRACE_CONF, 'Off');
-					$gui->putMsg('Configuration saved to \'config.ini.php\'');
+					$gui->putMsg('Configuration saved to \''.$cnf->Path.'\'');
 				} else
 					$gui->putMsg('Error in configuration - please check', Config::CSS_ERR);
 				$gui->updVar('Action', 'Config');
