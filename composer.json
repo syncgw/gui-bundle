@@ -21,7 +21,7 @@
 	],
 	"require" : {
 		"php" : ">=8.1",
-		"syncgw/sabredav" : ">=9.19.80",
+		"syncgw/sabredav" : ">=9.19.81",
 		"syncgw/core-bundle" : ">=9.19.80"
 	},
 	"autoload" : {
