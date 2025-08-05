@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  *	@package	sync*gw
  *	@subpackage	GUI
- *	@copyright	(c) 2008 - 2024 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2008 - 2025 Florian Daeumling, Germany. All right reserved
  * 	@license 	LGPL-3.0-or-later
  */
 
@@ -53,7 +53,9 @@ class guiTraceExport {
 		case 'ExpTraceExport':
 
 			// load skeleton
-			$skel = file_get_contents(Config::getInstance()->getVar(Config::ROOT).'/gui-bundle/assets/export.html');
+			$skel = file_get_contents(__DIR__.'/../assets/export.html');
+
+			// load trace data
 			$recs = [];
 			foreach (explode("\n", file_get_contents($_SESSION[$gui->getVar('SessionID')][guiHandler::BACKUP])) as $rec)
 				if (substr($rec, 0, 1) == '7')
@@ -76,8 +78,8 @@ class guiTraceExport {
 				break;
 			}
 			// swap all files
-			foreach ([ $html, 'assets/gui/favicon.ico', 'assets/gui/qbox.js',
-					   'assets/gui/style.css', 'assets/gui/syncgw.png' ] as $file)
+			foreach ([ $html, __DIR__.'/../assets/favicon.ico', __DIR__.'/../assets/qbox.min.js',
+					   __DIR__.'/../assets/style.min.css', __DIR__.'/../assets/syncgw.png' ] as $file)
 
 				if (!$zip->addFile($file, basename($file))) {
 

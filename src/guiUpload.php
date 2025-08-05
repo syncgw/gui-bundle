@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  *	@package	sync*gw
  *	@subpackage	GUI
- *	@copyright	(c) 2008 - 2024 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2008 - 2025 Florian Daeumling, Germany. All right reserved
  * 	@license 	LGPL-3.0-or-later
  *
  */
@@ -64,10 +64,6 @@ class guiUpload {
 				$wrk = str_replace([ "\r", '<', '>' ], [ '', '&lt;', '&gt;' ], $wrk);
 
 			switch ($ext) {
-			case 'zip':
-				$hid = DataStore::TRACE;
-				break;
-
 			case 'jpg':
 				$hid = DataStore::USER;
 				break;

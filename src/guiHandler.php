@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  *	@package	sync*gw
  *	@subpackage	GUI
- *	@copyright	(c) 2008 - 2024 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2008 - 2025 Florian Daeumling, Germany. All right reserved
  * 	@license 	LGPL-3.0-or-later
  */
 
@@ -581,8 +581,11 @@ class guiHandler extends XML {
 		$apw = $cnf->getVar(Config::ADMPW);
 
 		// user already logged in?
-		if (isset($_SESSION[parent::getVar('SessionID')][self::PWD]))
+		if (isset($_SESSION[parent::getVar('SessionID')][self::PWD])) {
+
+			 User::getinstance()->loadUsr(base64_decode($_SESSION[parent::getVar('SessionID')][self::UID]));
 			return true;
+		}
 
 		// check login data?
 		if ($action == 'Login') {
@@ -626,10 +629,6 @@ class guiHandler extends XML {
 			else {
 
 				if ($uid = parent::getVar('UserID')) {
-
-					// normalize user id
-					if (strpos($uid, '@') !== false)
-						list($uid,) = explode('@', $uid);
 
 					if ($pw = parent::getVar('UserPW')) {
 

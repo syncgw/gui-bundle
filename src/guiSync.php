@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  *	@package	sync*gw
  *	@subpackage	GUI
- *	@copyright	(c) 2008 - 2024 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2008 - 2025 Florian Daeumling, Germany. All right reserved
  * 	@license 	LGPL-3.0-or-later
  */
 
@@ -47,8 +47,8 @@ class guiSync {
 
 		$gui = guiHandler::getInstance();
 
-		// only allowed for administrators
-		if (!$gui->isAdmin())
+		// only allowed for non-administrators
+		if ($gui->isAdmin())
 			return guiHandler::CONT;
 
 		$hid = intval($gui->getVar('ExpHID'));
@@ -59,13 +59,9 @@ class guiSync {
 			$gui->clearAjax();
 
 			// sync records
-			$gui->putMsg('<br><hr />');
 			$ds = Util::HID(Util::HID_CNAME, $hid);
-			$ds = $ds::getInstance();
-			$ds->syncDS($gui->getVar('ExpGID'));
-			Config::getInstance()->updVar(Config::DBG_LEVEL, Config::DBG_OFF);
-			$gui->putMsg('<br><hr />');
-
+			$ds::getInstance()->syncDS($gui->getVar('ExpGID'), true);
+			$gui->putMsg('Done');
 			// reload explorer view
 			$gui->updVar('Action', 'Explorer');
 			return guiHandler::RESTART;
