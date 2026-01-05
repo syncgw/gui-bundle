@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  *	@package	sync*gw
  *	@subpackage	GUI
- *	@copyright	(c) 2008 - 2025 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2008 - 2026 Florian Daeumling, Germany. All right reserved
  * 	@license 	LGPL-3.0-or-later
  */
 
@@ -149,7 +149,7 @@ class guiHandler extends XML {
 			self::$_obj->loadXML(
 					'<syncgw>'.
 					// URL to HTML directory
-					'<HTML>./vendor/syncgw/</HTML>'.
+					'<HTML>vendor/syncgw/</HTML>'.
 					// the script we're serving
 					'<ScriptURL>'.base64_encode($http->getHTTPVar('PHP_SELF').'?'.$http->getHTTPVar('QUERY_STRING')).'</ScriptURL>'.
 					// missing JavaScript message (translation)
@@ -180,16 +180,16 @@ class guiHandler extends XML {
 	    		    // syncgw version
 					'<Version>'.$cnf->getVar(Config::VERSION).'</Version>'.
 					// HTML skeleton
-					'<Skeleton>assets/interface.html</Skeleton>'.
+					'<Skeleton>interface.html</Skeleton>'.
 					// set size of Q-box "icon"
 					'<QBoxStyle>width:18px; padding:0px; font-size:9px;float:inline-start;margin-right:5px;</QBoxStyle>'.
 					'</syncgw>');
 
 			// start session
-			if (($stat = session_status()) == PHP_SESSION_NONE)
+			if (($stat = session_status()) == \PHP_SESSION_NONE)
 	       		ini_set('session.cookie_lifetime', '0');
 
-			if ($stat != PHP_SESSION_ACTIVE) {
+			if ($stat != \PHP_SESSION_ACTIVE) {
 
 				if (!isset($_POST['SessionID'])) {
 
@@ -657,7 +657,7 @@ class guiHandler extends XML {
 		// set login skeleton
 		if (isset($_GET['adm'])) {
 
-    		parent::updVar('Skeleton', 'assets/admin.html');
+    		parent::updVar('Skeleton', 'admin.html');
     		if (strstr($_SERVER['REQUEST_URI'], 'adm=plesk') !== false)
     		    parent::updVar('ExtButton', self::mkButton('External',
     		    			'Login to <strong>sync&bull;gw</strong> in a new browser window',
@@ -666,9 +666,9 @@ class guiHandler extends XML {
 		                   '?sess='.uniqid('sgw').(strpos($_SERVER['REQUEST_URI'], 'adm') ? '&adm' : '').'\');w.focus();'));
 
 		} elseif (!$apw)
-    		parent::updVar('Skeleton', 'assets/init.html');
+    		parent::updVar('Skeleton', 'init.html');
         else
-    		parent::updVar('Skeleton', 'assets/login.html');
+    		parent::updVar('Skeleton', 'login.html');
         parent::updVar('LoginButton', self::mkButton('Login', 'Login to <strong>sync&bull;gw</strong>', 'Login'));
 
 		// is administrator password defined?
@@ -780,7 +780,7 @@ class guiHandler extends XML {
 
 		// send data
 		$http->addHeader('Content-Type', 'text/html; charset=UTF-8');
-		$http->addBody(str_replace($rk, $rv, file_get_contents('./vendor/syncgw/gui-bundle/'.parent::getVar('Skeleton'))));
+		$http->addBody(str_replace($rk, $rv, file_get_contents(__DIR__.'/../assets/'.parent::getVar('Skeleton'))));
 		$http->send(200);
 
 	}

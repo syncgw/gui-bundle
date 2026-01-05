@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  *	@package	sync*gw
  *	@subpackage	GUI
- *	@copyright	(c) 2008 - 2025 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2008 - 2026 Florian Daeumling, Germany. All right reserved
  * 	@license 	LGPL-3.0-or-later
  */
 
@@ -100,8 +100,10 @@ class guiTrunc {
 			}
 
 		    // delete trace directory
-		    Util::rmDir($p = $cnf->getVar(Config::TRACE_DIR));
-		    mkdir($p);
+			if ($p = $cnf->getVar(Config::TRACE_DIR)) {
+				Util::rmDir($p);
+		    	mkdir($p);
+			}
 
 			$gui->putMsg('');
             $gui->putMsg('All <strong>sync&bull;gw</strong> tables truncated in database', Config::CSS_INFO);

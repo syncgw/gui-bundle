@@ -1,18 +1,18 @@
 {
 	"name" : "syncgw/gui-bundle",
-	"description" : "sync•gw GUI bundle.",
+	"description" : "sync*gw GUI bundle.",
 	"license" : "LGPL-3.0-or-later",
-    "repositories" : [{
-            "type" : "composer",
-            "url" : "https://repo.packagist.org"
-    	}
-    ],
+	"repositories" : [{
+			"type" : "composer",
+			"url" : "https://repo.packagist.org"
+		}
+	],
 	"homepage" : "https://github.com/syncgw/gui-bundle",
 	"type" : "syncgw-bundle",
 	"authors" : [{
 			"name" : "Florian Däumling",
 			"homepage" : "https://github.com/toteph42",
-            "role" : "Developer"
+			"role" : "Developer"
 		}
 	],
 	"funding" : [{

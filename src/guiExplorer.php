@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  *	@package	sync*gw
  *	@subpackage	GUI
- *	@copyright	(c) 2008 - 2025 Florian Daeumling, Germany. All right reserved
+ *	@copyright	(c) 2008 - 2026 Florian Daeumling, Germany. All right reserved
  * 	@license 	LGPL-3.0-or-later
  */
 
@@ -338,7 +338,7 @@ class guiExplorer {
 		// special load for traces
 		if ($hid & DataStore::TRACE) {
 
-			if (!($d = @opendir($path = $cnf->getVar(Config::TRACE_DIR))))
+			if (!($path = $cnf->getVar(Config::TRACE_DIR)) || !($d = @opendir($path)))
 				return [];
 
 			while (($file = @readdir($d)) !== false) {
