@@ -51,7 +51,10 @@ class guiSwitch {
 			$l = [];
 			foreach ([ 'file', 'mysql', 'roundcube', 'mail', 'myapp'] as $name) {
 
-				if (!($dir = opendir($path = $cnf->getVar(Config::ROOT).$name.'-bundle/src'))) {
+				if (!file_exists($path = $cnf->getVar(Config::ROOT).$name.'-bundle/src'))
+					continue;
+
+				if (!($dir = @opendir($path))) {
 
 					$gui->putMsg(sprintf('Can\'t open \'%s\'', $path), Config::CSS_ERR);
 					break;

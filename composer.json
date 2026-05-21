@@ -22,7 +22,7 @@
 	],
 	"require" : {
 		"php" : ">=8.1",
-		"sabre/dav" : "~4.6.0",
+		"sabre/dav" : "~4.7.0",
 		"syncgw/core-bundle" : "^9.20"
 	},
 	"autoload" : {
