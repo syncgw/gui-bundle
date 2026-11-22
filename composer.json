@@ -1,18 +1,18 @@
 {
 	"name" : "syncgw/gui-bundle",
+	"type" : "syncgw-bundle",
 	"description" : "sync*gw GUI bundle.",
-	"license" : "https://www.gnu.org/licenses/gpl-3.0.en.html",
+	"license" : "GPL-3.0-or-later",
 	"repositories" : [{
 			"type" : "composer",
 			"url" : "https://repo.packagist.org"
 		}
 	],
 	"homepage" : "https://github.com/syncgw/gui-bundle",
-	"type" : "syncgw-bundle",
 	"authors" : [{
 			"name" : "Florian Däumling",
-			"homepage" : "https://github.com/toteph42",
-			"role" : "Developer"
+			"role" : "Author",
+			"email" : "syncgw@wb28.de"
 		}
 	],
 	"funding" : [{
@@ -20,6 +20,10 @@
 			"url" : "https://www.paypal.com/donate/?hosted_button_id=DS6VK49NAFHEQ"
 		}
 	],
+	"support" : {
+		"issues" : "https://github.com/syncgw/gui-bundle/issues",
+		"docs" : "https://github.com/syncgw/doc-bundle"
+	},
 	"require" : {
 		"php" : ">=8.1",
 		"sabre/dav" : "~4.7.0",
@@ -29,10 +33,5 @@
 		"psr-4" : {
 			"syncgw\\gui\\" : "src/"
 		}
-	},
-	"support" : {
-		"issues" : "https://github.com/syncgw/syncgw/issues",
-		"source" : "https://github.com/syncgw/gui-bundle",
-		"docs" : "https://github.com/syncgw/gui-bundle"
 	}
 }
